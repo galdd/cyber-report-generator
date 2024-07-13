@@ -58,9 +58,7 @@
           />
         </div>
       </div>
-      <div id="app">
-        <froala id="edit" :tag="'textarea'" v-model="model"></froala>
-      </div>
+      <FroalaEditorComponent :modelValue="formData" @update:modelValue="updateModel" />
     </div>
   </section>
 </template>
@@ -75,6 +73,7 @@ import RiskMaterializationProbability from './RiskMaterializationProbability.vue
 import RiskLevel from './RiskLevel.vue';
 import Recommendations from './Recommendations.vue';
 import FormDataDisplay from './FormDataDisplay.vue';
+import FroalaEditorComponent from './FroalaEditorComponent.vue';
 
 export default {
   components: {
@@ -86,8 +85,14 @@ export default {
     RiskLevel,
     Recommendations,
     FormDataDisplay,
+    FroalaEditorComponent,
   },
   mixins: [dataMixin],
+  data() {
+    return {
+      formData: {}
+    };
+  },
   methods: {
     onDescriptionChange(selectedItem) {
       if (selectedItem) {
@@ -113,6 +118,21 @@ export default {
         }
         this.updateTable();
       }
+    },
+    updateTable() {
+      this.formData = {
+        selectTestSubject: this.selectTestSubject,
+        selectTestDescription: this.selectTestDescription,
+        selectTestFinding: this.selectTestFinding,
+        selectRisksAsAresult: this.selectRisksAsAresult,
+        SelectSeverityOfTheDamage: this.SelectSeverityOfTheDamage,
+        selectRiskMaterializationProbability: this.selectRiskMaterializationProbability,
+        selectRiskLevel: this.selectRiskLevel,
+        selectRecommendations: this.selectRecommendations
+      };
+    },
+    updateModel(value) {
+      this.formData = value;
     }
   }
 };

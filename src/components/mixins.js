@@ -1,4 +1,5 @@
 import axios from 'axios';
+import template from './template.json';
 
 export const dataMixin = {
   data() {
@@ -20,11 +21,13 @@ export const dataMixin = {
       selectRiskMaterializationProbability: "",
       selectRiskLevel: "",
       selectRecommendations: "",
-      item: { id: "", name: "" }
+      item: { id: "", name: "" },
+      model: "" // Add model to data
     };
   },
   created() {
     this.fetchData();
+    this.model = template.template; // Initialize model with template content
   },
   methods: {
     fetchData() {
@@ -95,48 +98,7 @@ export const dataMixin = {
       this.updateTable();
     },
     updateTable() {
-      this.model = `<html>
-<head>
-<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<meta name=Generator content="Microsoft Word 15 (filtered)">
-<style>
-...
-</style>
-</head>
-
-<body lang=EN-US link="#990099" vlink="#954F72" style='word-wrap:break-word'>
-
-<div class=WordSection1>
-
-<p class=MsoNormal dir=RTL style='text-align:right;direction:rtl;unicode-bidi:
-embed'><span lang=HE style='font-size:12.0pt;line-height:115%;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-<div align=right>
-
-<table class=MsoNormalTable dir=rtl border=1 cellspacing=0 cellpadding=0
- width=660 style='margin-left:6.4pt;border-collapse:collapse;border:none'>
-...
-</table>
-
-</div>
-
-<p class=MsoNormal dir=RTL style='text-align:right;direction:rtl;unicode-bidi:
-embed'><span lang=HE style='font-size:12.0pt;line-height:115%;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-<p class=MsoNormal dir=RTL style='text-align:right;direction:rtl;unicode-bidi:
-embed'><span lang=HE style='font-size:12.0pt;line-height:115%;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-<p class=MsoNormal dir=RTL style='text-align:right;direction:rtl;unicode-bidi:
-embed'><span lang=HE style='font-size:12.0pt;line-height:115%;font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
-
-</div>
-
-</body>
-</html>`;
+      this.model = template.template;
     },
   }
 };
